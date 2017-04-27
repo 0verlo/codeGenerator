@@ -18,11 +18,13 @@ int charTableSelect(int iPosition)
 	int charSelect = 0;
 	do{
 		charSelect = rand() % (126 - 33 + 1) + 33;
-	//here you can remove some char you dont like.
-	}while(124 == charSelect ||
-			96 == charSelect);
+	//--here you can remove some char you dont like.--//
+	}while(!((47 < charSelect && 58 > charSelect)|| \
+			(64 < charSelect && 91 > charSelect)|| \
+			(96 < charSelect && 123 > charSelect)));
 	
-	//change the random char when there is too less punctuations.
+#if 0 //the easiest way to make the code complex is to make it looooog :)
+	//--change the random char when there is too less punctuations.--//
 	if((MAX_LENGTH_WIHTOUT_PUNC < (iPosition - lastPunc)) &&
 			((46 < charSelect && 58 > charSelect) ||
 			 (64 < charSelect && 123 > charSelect))){
@@ -33,8 +35,9 @@ int charTableSelect(int iPosition)
 			 (64 < charSelect && 123 > charSelect))){
 		lastPunc = iPosition;
 	}
+#endif	
 
-	//printf("char you got is %d\n",charSelect);
+	printf("char you got is %d\n",charSelect);
 	return charSelect;
 }
 
@@ -62,8 +65,8 @@ int lengthInput()
 
 void main()
 {
-	//srand() will initailize the rand() func
-	//Which means it should only run once in each process if you need
+	//--srand() will initailize the rand() func--//
+	//--Which means it should only run once in each process if you need--//
 	srand(time(NULL));
 	
 	stCrCode newCode;
